@@ -1,6 +1,6 @@
 <?php
 session_start();
-require 'config/db.php';
+require 'config/database.php';
 
 require 'includes/header.php';
 ?>

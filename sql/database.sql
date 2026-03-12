@@ -1,7 +1,3 @@
--- Ymmo - Real Estate Platform Database
--- MySQL 5.7+
-
--- Create database
 CREATE DATABASE IF NOT EXISTS ymmo_db;
 USE ymmo_db;
 
@@ -116,7 +112,7 @@ CREATE TABLE IF NOT EXISTS transactions (
     INDEX (transaction_date)
 );
 
--- Favorites/Wishlist table
+-- Favorites
 CREATE TABLE IF NOT EXISTS favorites (
     id INT AUTO_INCREMENT PRIMARY KEY,
     user_id INT NOT NULL,
