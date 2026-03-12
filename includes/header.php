@@ -8,7 +8,7 @@
         $path = $_SERVER['PHP_SELF'];
         if (strpos($path, '/admin/') !== false) {
             $base = '../';
-        } elseif (strpos($path, '/cart/') !== false) {
+        } elseif (strpos($path, '/agent/') !== false) {
             $base = '../';
         } else {
             $base = '';
@@ -22,8 +22,13 @@
         <div class="logo"><a href="<?php echo $base; ?>index.php">Loge-Moi</a></div>
         <ul class="nav-links">
             <li><a href="<?php echo $base; ?>index.php">Accueil</a></li>
+            <li><a href="<?php echo $base; ?>properties.php">Propriétés</a></li>
+            <li><a href="<?php echo $base; ?>agencies.php">Agences</a></li>
             <?php if (isset($_SESSION['user_id'])): ?>
                 <li><a href="<?php echo $base; ?>account.php">Mon compte</a></li>
+                <?php if ($_SESSION['role'] === 'agent'): ?>
+                    <li><a href="<?php echo $base; ?>agent/index.php">Agent</a></li>
+                <?php endif; ?>
                 <?php if ($_SESSION['role'] === 'admin'): ?>
                     <li><a href="<?php echo $base; ?>admin/index.php">Admin</a></li>
                 <?php endif; ?>

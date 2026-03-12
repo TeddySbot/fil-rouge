@@ -8,14 +8,31 @@ if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'admin') {
 }
 
 $users_count = 0;
-
+$clients_count = 0;
+$approved_count = 0;
+$agents_count = 0;
+$admin_count = 0;
 
 try {
     $stmt = $pdo->query("SELECT COUNT(*) as count FROM users");
     $result = $stmt->fetch();
     $users_count = $result['count'] ?? 0;
-
     
+    $stmt = $pdo->query("SELECT COUNT(*) as count FROM users WHERE role = 'client'");
+    $result = $stmt->fetch();
+    $clients_count = $result['count'] ?? 0;
+
+    $stmt = $pdo->query("SELECT COUNT(*) as count FROM users WHERE role = 'attente'");
+    $result = $stmt->fetch();
+    $approved_count = $result['count'] ?? 0;
+
+    $stmt = $pdo->query("SELECT COUNT(*) as count FROM users WHERE role = 'agent'");
+    $result = $stmt->fetch();
+    $agents_count = $result['count'] ?? 0;
+
+    $stmt = $pdo->query("SELECT COUNT(*) as count FROM users WHERE role = 'admin'");
+    $result = $stmt->fetch();
+    $admin_count = $result['count'] ?? 0;
 
 } catch (PDOException $e) {
     echo "Erreur: " . $e->getMessage();
@@ -38,7 +55,10 @@ require '../includes/header.php';
     <div class="admin-stats">
         <h2>Statistiques</h2>
         <p>Total utilisateurs: <strong><?= $users_count ?></strong></p>
+        <p>Total clients: <strong><?= $clients_count ?></strong></p>
+        <p>Total en attente de validation: <strong><?= $approved_count ?></strong></p>
         <p>Total agents: <strong><?= $agents_count ?></strong></p>
+        <p>Total admins: <strong><?= $admin_count ?></strong></p>
     </div>
 
     <a href="../index.php" class="btn btn-secondary">Accueil</a>
