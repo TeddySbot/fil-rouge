@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Loge-Moi</title>
+    <title>🏠 Loge-Moi</title>
     <?php
         $path = $_SERVER['PHP_SELF'];
         if (strpos($path, '/admin/') !== false) {
@@ -19,7 +19,7 @@
 <body>
 <header>
     <nav class="navbar">
-        <div class="logo"><a href="<?php echo $base; ?>index.php">Loge-Moi</a></div>
+        <div class="logo"><a href="<?php echo $base; ?>index.php">🏠 Loge-Moi</a></div>
         <ul class="nav-links">
             <li><a href="<?php echo $base; ?>index.php">Accueil</a></li>
             <li><a href="<?php echo $base; ?>properties.php">Propriétés</a></li>

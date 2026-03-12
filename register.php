@@ -15,7 +15,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $city = trim($_POST['city'] ?? '');
     $role = $_POST['role'] ?? 'client';
 
-    // Validation
     if (!$name) {
         $error = "Le nom est requis";
     } elseif (!$email) {
@@ -30,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $error = "Les mots de passe ne correspondent pas";
     } elseif ($phone && !preg_match('/^[0-9\s\-\+\(\)]{7,}$/', $phone)) {
         $error = "Le numéro de téléphone n'est pas valide";
-    } elseif (!in_array($role, ['client', 'agent', 'admin'])) {
+    } elseif (!in_array($role, ['client', 'attente', 'admin'])) {
         $role = 'client';
     }
 
@@ -124,7 +123,7 @@ require 'includes/header.php';
             <label for="role">Type de compte</label>
             <select id="role" name="role">
                 <option value="client">Client</option>
-                <option value="agent">Agent</option>
+                <option value="attente">Agent (en attente)</option>
             </select>
         </div>
         

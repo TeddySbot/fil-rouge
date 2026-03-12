@@ -1,8 +1,4 @@
 <?php
-/**
- * Ymmo - Real Estate Platform
- * Database Configuration and Connection
- */
 
 class Database
 {
@@ -13,9 +9,6 @@ class Database
     private $charset = 'utf8mb4';
     private $pdo;
 
-    /**
-     * Connect to database using PDO
-     */
     public function connect()
     {
         $dsn = "mysql:host=" . $this->host . ";dbname=" . $this->db_name . ";charset=" . $this->charset;
@@ -25,7 +18,6 @@ class Database
             $this->pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
             return $this->pdo;
         } catch (PDOException $e) {
-            // Check if this is an API request
             if (strpos($_SERVER['REQUEST_URI'] ?? '', '/api/') !== false) {
                 header('Content-Type: application/json');
                 echo json_encode([
@@ -38,9 +30,6 @@ class Database
         }
     }
 
-    /**
-     * Get PDO instance
-     */
     public function getPDO()
     {
         if ($this->pdo === null) {
@@ -50,7 +39,6 @@ class Database
     }
 }
 
-// Create database instance
 $db = new Database();
 $pdo = $db->connect();
 ?>

@@ -6,15 +6,17 @@
 
 --- vue pour agents
 [] Rajoute des propriétés
-[] 
+[] Créaion de l'agence
+[] Rajouter les membres dans l'agence
+
 
 
 --- vue page admin
 [] page Admin/propriétés
-[] Page Admin/validation agent
+[x] Page Admin/validation agent
 
 
 --- Fonctionnalité suplémetaire
 [] favoris (( avec indication que agent peuvent voir les trucs))
-[] Validation Agent avant donné permission
+[x] Validation Agent avant donné permission
 [] mettre des couleurs celon l'endroit ( Admin = noir, agent = blanc, client = bleu)

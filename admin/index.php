@@ -49,6 +49,7 @@ require '../includes/header.php';
         <ul>
             <li><a href="users.php" class="btn">Gérer les utilisateurs</a></li>
             <li><a href="properties.php" class="btn">Gérer les propriétés</a></li>
+            <li><a href="approve.php" class="btn">Gérer les approbations</a></li>
         </ul>
     </div>
 
