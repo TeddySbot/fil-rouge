@@ -1044,6 +1044,144 @@ tbody tr:hover td { background: rgba(255,255,255,.02); }
 .property-card-meta span { display: flex; align-items: center; gap: 4px; }
 
 /* ══════════════════════════════
+   JOIN AGENCY (ja-*)
+══════════════════════════════ */
+.ja-page { padding: 36px 24px 80px; }
+.ja-wrap { max-width: 900px; margin: 0 auto; }
+
+.ja-back {
+  display: inline-flex; align-items: center; gap: 6px;
+  color: var(--muted); text-decoration: none; font-size: 13px;
+  margin-bottom: 28px; transition: color .2s;
+}
+.ja-back:hover { color: var(--text); }
+
+.ja-header { margin-bottom: 28px; }
+
+.ja-count {
+  font-size: 13px; color: var(--muted); margin-bottom: 18px;
+  animation: fadeUp .4s .15s ease both;
+}
+.ja-count strong { color: var(--text); }
+
+.ja-empty {
+  background: var(--surf); border: 1px dashed var(--border);
+  border-radius: var(--r-lg); padding: 60px 40px;
+  text-align: center; color: var(--muted);
+  display: flex; flex-direction: column; align-items: center; gap: 14px;
+}
+.ja-empty svg { opacity: .25; }
+.ja-empty p { font-size: 15px; margin: 0; }
+
+/* Grille des agences */
+.ja-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 16px;
+  margin-bottom: 32px;
+}
+
+.ja-card {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  animation: fadeUp .4s ease both;
+}
+.ja-card:hover {
+  border-color: var(--gold-dim);
+  transform: translateY(-2px);
+  box-shadow: 0 12px 36px rgba(0,0,0,.4);
+}
+
+.ja-card-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 20px 20px 16px;
+}
+
+.ja-logo {
+  width: 52px; height: 52px;
+  border-radius: 12px;
+  background: var(--surf2);
+  border: 1px solid var(--border);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Syne', sans-serif; font-size: 20px; font-weight: 800;
+  color: var(--gold); overflow: hidden; flex-shrink: 0;
+}
+.ja-logo img { width: 100%; height: 100%; object-fit: cover; }
+
+.ja-card-info { flex: 1; min-width: 0; }
+.ja-card-name {
+  font-family: 'Syne', sans-serif;
+  font-size: 15px; font-weight: 700;
+  color: var(--text); margin-bottom: 5px;
+  white-space: nowrap; overflow: hidden; text-overflow: ellipsis;
+}
+.ja-card-meta {
+  display: flex; gap: 12px; flex-wrap: wrap;
+  font-size: 12px; color: var(--muted);
+}
+.ja-card-meta span { display: flex; align-items: center; gap: 4px; }
+
+.ja-card-coords {
+  padding: 0 20px 12px;
+  display: flex; flex-direction: column; gap: 6px;
+  border-bottom: 1px solid var(--border);
+}
+.ja-coord {
+  display: flex; align-items: center; gap: 7px;
+  font-size: 12px; color: var(--soft);
+}
+.ja-coord svg { color: var(--gold); flex-shrink: 0; }
+
+.ja-card-desc {
+  padding: 12px 20px;
+  font-size: 12px;
+  color: var(--muted);
+  line-height: 1.6;
+  border-bottom: 1px solid var(--border);
+  margin: 0;
+}
+
+.ja-card-footer {
+  padding: 12px 16px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--surf2);
+  margin-top: auto;
+}
+
+.ja-join-btn { flex: 1; justify-content: center; }
+
+/* CTA créer une agence */
+.ja-create-cta {
+  background: var(--surf);
+  border: 1px solid var(--border);
+  border-radius: var(--r-lg);
+  padding: 24px 28px;
+  animation: fadeUp .4s .3s ease both;
+}
+.ja-create-cta-inner {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+@media (max-width: 640px) {
+  .ja-grid { grid-template-columns: 1fr; }
+  .ja-create-cta-inner { flex-direction: column; align-items: flex-start; }
+}
+
+/* ══════════════════════════════
    RESPONSIVE
 ══════════════════════════════ */
 @media (max-width: 900px) {
