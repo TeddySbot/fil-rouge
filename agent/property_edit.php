@@ -168,11 +168,11 @@ require '../includes/header.php';
 
   <!-- Topbar -->
   <div class="ed-topbar">
-    <a href="property_detail.php?id=<?= $property_id ?>" class="ed-back">
+    <a href="../property_detail.php?id=<?= $property_id ?>" class="ed-back">
       <svg width="14" height="14" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/></svg>
       Retour au détail
     </a>
-    <a href="property_detail.php?id=<?= $property_id ?>" class="ed-view-btn">
+    <a href="../property_detail.php?id=<?= $property_id ?>" class="ed-view-btn">
       <svg width="13" height="13" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
       Voir la fiche
     </a>

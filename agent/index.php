@@ -82,6 +82,21 @@ require '../includes/header.php';
                 <div class="dash-card-label">Ajouter un bien</div>
                 <div class="dash-card-desc">Créer une nouvelle propriété</div>
             </a>
+            <a href="stats.php" class="dash-card" onclick="window.location='stats.php';return false;">
+                <div class="dash-card-icon" style="background:rgba(62,207,116,.1);border-color:rgba(62,207,116,.2);color:var(--green);">📊</div>
+                <div class="dash-card-label">Voir les Statistiques</div>
+                <div class="dash-card-desc">Consulter les performances de mon agence</div>
+            </a>
+            <a href="agent_agenda.php" class="dash-card" onclick="window.location='agent_agenda.php';return false;">
+                <div class="dash-card-icon" style="background:rgba(62,207,116,.1);border-color:rgba(62,207,116,.2);color:var(--green);">📅</div>
+                <div class="dash-card-label">Agenda</div>
+                <div class="dash-card-desc">Gérer mes rendez-vous</div>
+            </a>
+            <a href="../agent_messages.php" class="dash-card" onclick="window.location='../messages.php';return false;">
+                <div class="dash-card-icon" style="background:rgba(62,207,116,.1);border-color:rgba(62,207,116,.2);color:var(--green);">✉️</div>
+                <div class="dash-card-label">Mes Messages</div>
+                <div class="dash-card-desc">Messages reçus de clients</div>
+            </a>
         <?php else: ?>
             <a href="join_agency.php" class="dash-card">
                 <div class="dash-card-icon">🔗</div>

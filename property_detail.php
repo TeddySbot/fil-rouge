@@ -66,7 +66,15 @@ $sc = $status_colors[$p['status']] ?? 'soft';
 
 $back_url = $can_edit ? 'agent/properties.php' : 'properties.php';
 
+$is_fav = false;
+if (isset($_SESSION['user_id'])) {
+    $fav_check = $pdo->prepare("SELECT id FROM favorites WHERE user_id=? AND property_id=?");
+    $fav_check->execute([$_SESSION['user_id'], $property_id]);
+    $is_fav = (bool)$fav_check->fetch();
+}
+
 require 'includes/header.php';
+
 ?>
 
 
@@ -92,7 +100,17 @@ require 'includes/header.php';
       </a>
     </div>
     <?php endif; ?>
+    <?php if (isset($_SESSION['user_id']) && !$can_edit): ?>
+<form method="POST" action="favorites.php">
+    <input type="hidden" name="property_id" value="<?= $p['id'] ?>">
+    <input type="hidden" name="redirect" value="property_detail.php?id=<?= $p['id'] ?>">
+    <button type="submit" class="fav-btn <?= $is_fav ? 'active' : '' ?>" style="width:100%;justify-content:center;">
+        <?= $is_fav ? '♥ Retirer des favoris' : '♡ Ajouter aux favoris' ?>
+    </button>
+</form>
+<?php endif; ?>
   </div>
+  
 
   <!-- Gallery -->
   <?php if (!empty($images)): ?>
@@ -187,6 +205,7 @@ require 'includes/header.php';
         <?php endif; ?>
       </div>
       <?php endif; ?>
+      
 
     </div><!-- /left -->
 
