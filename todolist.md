@@ -1,6 +1,7 @@
 --- page pour clients
 
-[] Page répertoire agence
+[X] Page répertoire agence
+[x] page des agences
 [] page répertoire de propriété
 [] page Des propriétés
 
