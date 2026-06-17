@@ -245,11 +245,12 @@ require 'includes/header.php';
       <!-- Agent -->
       <div class="pd-agent-card">
         <div class="pd-agent-inner">
+          <?php $agentInitial = strtoupper(mb_substr($p['agent_name'] ?? '?', 0, 1)); ?>
           <div class="pd-agent-ava">
-            <?php if ($p['agent_photo']): ?>
-              <img src="<?= htmlspecialchars($p['agent_photo']) ?>" alt="">
+            <?php if ($p['agent_photo'] && $p['agent_photo'] !== 'default.png'): ?>
+              <img src="uploads/<?= htmlspecialchars($p['agent_photo']) ?>" alt="" onerror="this.outerHTML='<?= $agentInitial ?>'">
             <?php else: ?>
-              <?= strtoupper(substr($p['agent_name'] ?? '?', 0, 1)) ?>
+              <?= $agentInitial ?>
             <?php endif; ?>
           </div>
           <div class="pd-agent-role">Agent responsable</div>
@@ -275,11 +276,12 @@ require 'includes/header.php';
       <!-- Agency -->
       <?php if ($p['agency_name']): ?>
       <a href="agency_detail.php?id=<?= $p['agency_id'] ?>" class="pd-agency-chip">
+        <?php $agencyInitial = strtoupper(mb_substr($p['agency_name'], 0, 1)); ?>
         <div class="pd-agency-logo">
-          <?php if ($p['agency_logo']): ?>
-            <img src="<?= htmlspecialchars($p['agency_logo']) ?>" alt="">
+          <?php if ($p['agency_logo'] && $p['agency_logo'] !== 'default.png'): ?>
+            <img src="<?= htmlspecialchars($p['agency_logo']) ?>" alt="" onerror="this.outerHTML='<?= $agencyInitial ?>'">
           <?php else: ?>
-            <?= strtoupper(substr($p['agency_name'], 0, 1)) ?>
+            <?= $agencyInitial ?>
           <?php endif; ?>
         </div>
         <div>

@@ -53,10 +53,12 @@ require 'includes/header.php';
       <div class="ag-hero-top">
         <!-- Logo -->
         <div class="ag-logo-wrap">
-          <?php if ($agency['logo']): ?>
-            <img src="<?= htmlspecialchars($agency['logo']) ?>" alt="Logo <?= htmlspecialchars($agency['name']) ?>">
+          <?php $agencyLogoInitial = strtoupper(mb_substr($agency['name'], 0, 1)); ?>
+          <?php if ($agency['logo'] && $agency['logo'] !== 'default.png'): ?>
+            <img src="<?= htmlspecialchars($agency['logo']) ?>" alt="Logo <?= htmlspecialchars($agency['name']) ?>"
+                 onerror="this.outerHTML='<span class=\'ag-logo-placeholder\'><?= $agencyLogoInitial ?></span>'">
           <?php else: ?>
-            <span class="ag-logo-placeholder"><?= strtoupper(substr($agency['name'], 0, 1)) ?></span>
+            <span class="ag-logo-placeholder"><?= $agencyLogoInitial ?></span>
           <?php endif; ?>
         </div>
 
@@ -206,10 +208,12 @@ require 'includes/header.php';
         <div class="ag-agents-grid">
           <?php foreach ($agents as $agent): ?>
             <a href="agent_detail.php?id=<?= $agent['id'] ?>" class="ag-agent-card">
-              <?php if ($agent['profile_image']): ?>
-                <img src="<?= htmlspecialchars($agent['profile_image']) ?>" alt="<?= htmlspecialchars($agent['name']) ?>" class="ag-agent-avatar">
+              <?php $agInitial = strtoupper(mb_substr($agent['name'], 0, 1)); ?>
+              <?php if ($agent['profile_image'] && $agent['profile_image'] !== 'default.png'): ?>
+                <img src="uploads/<?= htmlspecialchars($agent['profile_image']) ?>" alt="<?= htmlspecialchars($agent['name']) ?>" class="ag-agent-avatar"
+                     onerror="this.outerHTML='<div class=\'ag-agent-avatar-placeholder\'><?= $agInitial ?></div>'">
               <?php else: ?>
-                <div class="ag-agent-avatar-placeholder"><?= strtoupper(substr($agent['name'], 0, 1)) ?></div>
+                <div class="ag-agent-avatar-placeholder"><?= $agInitial ?></div>
               <?php endif; ?>
               <div class="ag-agent-name"><?= htmlspecialchars($agent['name']) ?></div>
               <div class="ag-agent-email"><?= htmlspecialchars($agent['email']) ?></div>
