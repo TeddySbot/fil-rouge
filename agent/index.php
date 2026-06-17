@@ -2,6 +2,9 @@
 session_start();
 require '../config/database.php';
 
+use App\Repository\AgencyRepository;
+use App\Repository\PropertyRepository;
+
 if (!isset($_SESSION['user_id']) || $_SESSION['role'] !== 'agent') {
     header('Location: ../login.php');
     exit;
@@ -12,17 +15,21 @@ $error       = null;
 $agent_agency = null;
 
 try {
-    $stmt = $pdo->prepare("SELECT aa.*, a.name AS agency_name, a.id AS agency_id FROM agency_agents aa JOIN agencies a ON aa.agency_id = a.id WHERE aa.agent_id = :id LIMIT 1");
-    $stmt->execute(['id' => $agent_id]);
-    $agent_agency = $stmt->fetch();
+    // Couche POO : repositories à requêtes préparées (corrige l'ancienne
+    // injection SQL où $agency_id était interpolé directement dans le SQL).
+    $agencyRepo   = new AgencyRepository($pdo);
+    $propertyRepo = new PropertyRepository($pdo);
 
-    // Stats
-    $agency_id = $agent_agency['agency_id'] ?? null;
+    $agency = $agencyRepo->findByAgent($agent_id);
+
     $props_total = $props_available = $props_sold = 0;
-    if ($agency_id) {
-        $props_total     = $pdo->prepare("SELECT COUNT(*) FROM properties WHERE agency_id = ?")->execute([$agency_id]) ? $pdo->query("SELECT COUNT(*) FROM properties WHERE agency_id = $agency_id")->fetchColumn() : 0;
-        $props_available = $pdo->query("SELECT COUNT(*) FROM properties WHERE agency_id = $agency_id AND status = 'available'")->fetchColumn();
-        $props_sold      = $pdo->query("SELECT COUNT(*) FROM properties WHERE agency_id = $agency_id AND status = 'sold'")->fetchColumn();
+    if ($agency !== null) {
+        // Conserve la forme attendue par la vue.
+        $agent_agency = ['agency_id' => $agency->id, 'agency_name' => $agency->name];
+
+        $props_total     = $propertyRepo->countByAgency($agency->id);
+        $props_available = $propertyRepo->countByAgency($agency->id, 'available');
+        $props_sold      = $propertyRepo->countByAgency($agency->id, 'sold');
     }
 } catch (PDOException $e) {
     $error = "Erreur : " . $e->getMessage();
@@ -86,6 +93,11 @@ require '../includes/header.php';
                 <div class="dash-card-icon" style="background:rgba(62,207,116,.1);border-color:rgba(62,207,116,.2);color:var(--green);">📊</div>
                 <div class="dash-card-label">Voir les Statistiques</div>
                 <div class="dash-card-desc">Consulter les performances de mon agence</div>
+            </a>
+            <a href="analytics.php" class="dash-card" onclick="window.location='analytics.php';return false;">
+                <div class="dash-card-icon" style="background:rgba(212,168,67,.1);border-color:rgba(212,168,67,.2);color:var(--gold);">📈</div>
+                <div class="dash-card-label">Analyse de données</div>
+                <div class="dash-card-desc">Rapports de ventes &amp; prévisions (Python)</div>
             </a>
             <a href="agent_agenda.php" class="dash-card" onclick="window.location='agent_agenda.php';return false;">
                 <div class="dash-card-icon" style="background:rgba(62,207,116,.1);border-color:rgba(62,207,116,.2);color:var(--green);">📅</div>

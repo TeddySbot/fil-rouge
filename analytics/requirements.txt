@@ -1,0 +1,6 @@
+# Dépendances du module d'analyse de données (espace agent)
+# Installation :  pip install -r requirements.txt
+pandas>=1.5
+numpy>=1.23
+matplotlib>=3.6
+PyMySQL>=1.0
