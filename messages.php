@@ -131,10 +131,11 @@ require ($base ? '../' : '') . 'includes/header.php';
       <?php foreach ($conversations as $conv): ?>
         <a href="message_detail.php?conv=<?= $conv['id'] ?>" class="msg-item <?= $conv['unread_count'] > 0 ? 'unread' : '' ?>">
           <div class="msg-avatar">
-            <?php if ($conv['other_photo']): ?>
-              <img src="<?= $base ?>uploads/<?= htmlspecialchars($conv['other_photo']) ?>" alt="">
+            <?php $convInitial = strtoupper(mb_substr($conv['other_name'], 0, 1)); ?>
+            <?php if ($conv['other_photo'] && $conv['other_photo'] !== 'default.png'): ?>
+              <img src="<?= $base ?>uploads/<?= htmlspecialchars($conv['other_photo']) ?>" alt="" onerror="this.outerHTML='<?= $convInitial ?>'">
             <?php else: ?>
-              <?= strtoupper(substr($conv['other_name'], 0, 1)) ?>
+              <?= $convInitial ?>
             <?php endif; ?>
             <?php if ($conv['unread_count'] > 0): ?>
               <span class="msg-unread-dot"><?= $conv['unread_count'] ?></span>
